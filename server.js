@@ -13,11 +13,11 @@ const port = 3000;
 
 // 1. Database Connection
 const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'ai-marketing-tool',
-    password: 'postgres123',
-    port: 5432,
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT,
 });
 
 // 2. Middleware
