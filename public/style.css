@@ -1,0 +1,43 @@
+/* public/style.css */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f9fafb;
+    color: #111827;
+}
+
+/* Make the Sidebar look sleek and narrow */
+.sidebar {
+    width: 260px;
+    background: #ffffff; /* White sidebar is very "modern SaaS" */
+    border-right: 1px solid #e5e7eb;
+    height: 100vh;
+    padding: 1.5rem;
+}
+
+/* High-end Cards */
+.dashboard-card, .card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb; /* Thin, subtle border */
+    border-radius: 12px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    transition: all 0.2s ease-in-out;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border-color: #10b981;
+}
+
+/* Premium Buttons */
+.btn-primary {
+    background-color: #10b981;
+    border: none;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
+.btn-primary:hover {
+    background-color: #059669;
+}

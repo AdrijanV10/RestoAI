@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RestoAI | Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #10b981;    /* Emerald Green */
+            --primary-hover: #059669;
+            --bg-main: #f9fafb;    /* Very light grey */
+            --sidebar-bg: #ffffff; /* Clean white sidebar */
+            --text-main: #111827;  /* Deep charcoal */
+            --text-muted: #6b7280; /* Grey for subtext */
+            --border: #e5e7eb;
+        }
+
+        body { 
+            display: flex; 
+            margin: 0; 
+            font-family: 'Inter', sans-serif !important; 
+            height: 100vh; 
+            background-color: var(--bg-main);
+            color: var(--text-main);
+        }
+
+        /* Sidebar Styles */
+        .sidebar { 
+            width: 260px; 
+            background: var(--sidebar-bg); 
+            border-right: 1px solid var(--border);
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar h2 { 
+            color: var(--primary); 
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            letter-spacing: -0.03em;
+            padding-left: 10px;
+        }
+
+        .sidebar nav a { 
+            display: flex;
+            align-items: center;
+            color: #4b5563; 
+            text-decoration: none; 
+            padding: 12px 15px; 
+            border-radius: 10px;
+            margin-bottom: 8px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .sidebar nav a:hover { 
+            background: #f3f4f6; 
+            color: var(--primary); 
+        }
+
+        /* Active link style */
+        .nav-active {
+            background: #ecfdf5 !important;
+            color: var(--primary) !important;
+        }
+
+        /* Main Content Area */
+        .main-content { 
+            flex-grow: 1; 
+            padding: 60px; 
+            overflow-y: auto; 
+        }
+
+        .main-content h1 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .main-content p {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        /* Card Styles */
+        .card-container { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 350px)); 
+            gap: 25px; 
+        }
+
+        .card { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 16px; 
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover { 
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+            border-color: var(--primary);
+        }
+
+        .card h3 {
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        /* Button Style */
+        .btn { 
+            background: var(--primary); 
+            color: white; 
+            padding: 12px 24px; 
+            text-decoration: none; 
+            border-radius: 8px; 
+            display: inline-block; 
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+            border: none;
+        }
+
+        .btn:hover { 
+            background: var(--primary-hover); 
+        }
+
+        .btn-disabled {
+            background: #f3f4f6;
+            color: #9ca3af;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>RestoAI</h2>
+        <nav>
+            <a href="/dashboard" class="nav-active">🏠 Home</a>
+            <a href="/reviews-page">⭐ Google Reviews</a>
+            <a href="#">📱 Social Captions</a>
+            <div style="margin-top: auto;"> 
+                <a href="/logout">🚪 Logout</a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <h1 id="welcomeText">Welcome back!</h1>
+        <p>Select a tool to start managing your restaurant's online presence.</p>
+
+        <div class="card-container">
+            <div class="card">
+                <h3>Google Reviews</h3>
+                <p>Generate polite, brand-consistent replies to customer feedback in seconds.</p>
+                <a href="/reviews-page" class="btn">Open Tool</a>
+            </div>
+
+            <div class="card">
+                <h3>Social Media</h3>
+                <p>Create engaging captions for your food photos on Instagram and Facebook.</p>
+                <button class="btn btn-disabled">Coming Soon</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function loadDashboard() {
+            try {
+                const response = await fetch('/api/user-data');
+                const data = await response.json();
+                
+                if (data.restaurant_name) {
+                    // This replaces the generic text with the actual business name
+                    document.getElementById('welcomeText').innerText = `Welcome back, ${data.restaurant_name}!`;
+                }
+            } catch (err) {
+                console.error("Error loading user data:", err);
+            }
+        }
+
+        // Run this when the page loads
+        loadDashboard();
+    </script>
+</body>
+</html>
