@@ -153,6 +153,7 @@
             <a href="/dashboard" class="nav-active">🏠 Home</a>
             <a href="/reviews-page">⭐ Google Reviews</a>
             <a href="#">📱 Social Captions</a>
+            <a href="/settings">⚙️ Account Management</a>
             <div style="margin-top: auto;"> 
                 <a href="/logout">🚪 Logout</a>
             </div>
@@ -185,7 +186,7 @@
                 const data = await response.json();
                 
                 if (data.restaurant_name) {
-                    // This replaces the generic text with the actual business name
+                    // replaces text with actual business name
                     document.getElementById('welcomeText').innerText = `Welcome back, ${data.restaurant_name}!`;
                 }
             } catch (err) {
