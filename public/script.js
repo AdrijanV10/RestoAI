@@ -6,7 +6,7 @@ const replyText = document.getElementById('replyText');
 const approveBtn = document.querySelector('.btn-success.flex-grow-1');
 const copyBtn = document.getElementById('copyBtn');
 
-// 1. Generate AI Reply
+// Generate AI Reply
 generateBtn.addEventListener('click', async () => {
     const review = reviewInput.value;
     const stars = starRating.value;
@@ -36,7 +36,7 @@ generateBtn.addEventListener('click', async () => {
     }
 });
 
-// 2. Copy to Clipboard (With Green Feedback)
+// Copy to clipboard
 copyBtn.addEventListener('click', () => {
     navigator.clipboard.writeText(replyText.innerText).then(() => {
         const originalText = copyBtn.innerText;
@@ -50,5 +50,5 @@ copyBtn.addEventListener('click', () => {
     });
 });
 
-// 3. Approve Button
-approveBtn.addEventListener('click', () => alert("Posted to Google!"));
+// Approve Button
+approveBtn.addEventListener('click', () => alert("Posted to Google"));

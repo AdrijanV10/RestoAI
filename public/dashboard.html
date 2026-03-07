@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RestoAI | Dashboard</title>
+    <title>AdriaLogic | Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary: #10b981;    /* Emerald Green */
-            --primary-hover: #059669;
-            --bg-main: #f9fafb;    /* Very light grey */
-            --sidebar-bg: #ffffff; /* Clean white sidebar */
-            --text-main: #111827;  /* Deep charcoal */
-            --text-muted: #6b7280; /* Grey for subtext */
+            /* Updated to Adriatic Blue Palette */
+            --primary: #00416A;      
+            --primary-hover: #002d4a;
+            --primary-light: #e6ecf0;
+            --bg-main: #f9fafb;    
+            --sidebar-bg: #ffffff; 
+            --text-main: #111827;  
+            --text-muted: #6b7280; 
             --border: #e5e7eb;
         }
 
@@ -62,9 +64,9 @@
             color: var(--primary); 
         }
 
-        /* Active link style */
+        /* Updated Active link style */
         .nav-active {
-            background: #ecfdf5 !important;
+            background: var(--primary-light) !important;
             color: var(--primary) !important;
         }
 
@@ -148,7 +150,7 @@
 <body>
 
     <div class="sidebar">
-        <h2>RestoAI</h2>
+        <h2>AdriaLogic</h2>
         <nav>
             <a href="/dashboard" class="nav-active">🏠 Home</a>
             <a href="/reviews-page">⭐ Google Reviews</a>
@@ -162,18 +164,18 @@
 
     <div class="main-content">
         <h1 id="welcomeText">Welcome back!</h1>
-        <p>Select a tool to start managing your restaurant's online presence.</p>
+        <p>Select a tool to start managing your brand's digital presence.</p>
 
         <div class="card-container">
             <div class="card">
                 <h3>Google Reviews</h3>
-                <p>Generate polite, brand-consistent replies to customer feedback in seconds.</p>
+                <p>Generate brand-consistent, intelligent replies to customer feedback in seconds.</p>
                 <a href="/reviews-page" class="btn">Open Tool</a>
             </div>
 
             <div class="card">
                 <h3>Social Media</h3>
-                <p>Create engaging captions for your food photos on Instagram and Facebook.</p>
+                <p>Create professional engagement captions for your brand across all social platforms.</p>
                 <button class="btn btn-disabled">Coming Soon</button>
             </div>
         </div>
@@ -186,7 +188,7 @@
                 const data = await response.json();
                 
                 if (data.restaurant_name) {
-                    // replaces text with actual business name
+                    // Updating text to feel like a SaaS platform
                     document.getElementById('welcomeText').innerText = `Welcome back, ${data.restaurant_name}!`;
                 }
             } catch (err) {
@@ -194,7 +196,6 @@
             }
         }
 
-        // Run this when the page loads
         loadDashboard();
     </script>
 </body>

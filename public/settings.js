@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const form = document.getElementById('settings-form');
     const status = document.getElementById('status-msg');
+    const googleBtn = document.getElementById('google-btn');
 
     // Fill the form with user data
     try {
@@ -9,13 +10,28 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (response.ok) {
             const data = await response.json();
 
-            // Populate fields with the retrieved data.
+            // Populate profile fields
             document.getElementById('restaurant_name').value = data.restaurant_name || '';
             document.getElementById('owner_name').value = data.owner_name || '';
             document.getElementById('email').value = data.email || '';
             document.getElementById('cuisine_type').value = data.cuisine_type || '';
             document.getElementById('vibe').value = data.vibe || '';
             document.getElementById('usp').value = data.usp || '';
+
+            // NEW: Check Google Status and update UI
+            if (data.google_refresh_token) {
+                googleBtn.classList.add('connected');
+                
+                // This removes the glitchy <img> tag and uses a clean checkmark emoji
+                googleBtn.innerHTML = ` 
+                    <span>Connected to Google Business</span>
+                `;
+    
+                // This makes sure the button doesn't look like a clickable link anymore
+                googleBtn.style.cursor = 'default';
+                googleBtn.removeAttribute('href'); 
+            }
+
         } else {
             status.innerText = "Please log in to manage your account.";
             status.style.color = "#f59e0b";
@@ -28,11 +44,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        // loading
         status.innerText = "Saving changes to database...";
         status.style.color = "#3b82f6";
 
-        // Capture updated data from form fields
         const updatedData = {
             restaurant_name: document.getElementById('restaurant_name').value,
             owner_name: document.getElementById('owner_name').value,

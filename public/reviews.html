@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RestoAI | Reviews</title>
+    <title>AdriaLogic | Review Tool</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary: #10b981;
-            --primary-hover: #059669;
+            --primary: #00416A;      /* Adriatic Blue */
+            --primary-hover: #002d4a;
+            --primary-light: #e6ecf0;
             --bg-soft: #f9fafb;
             --dark: #111827;
-            --sidebar-dark: #1f2937; /* Consistent with modern nav */
         }
 
         body { 
@@ -22,7 +22,6 @@
             color: var(--dark);
         }
 
-        /* 1. Refined Navigation */
         .top-nav { 
             background: #ffffff; 
             padding: 15px 0; 
@@ -40,7 +39,13 @@
 
         .top-nav a:hover { color: var(--primary); }
 
-        /* 2. Professional Card Elevation */
+        .brand-name {
+            font-weight: 700;
+            color: var(--primary);
+            margin-right: 30px;
+            font-size: 1.1rem;
+        }
+
         .dashboard-card { 
             background: #ffffff;
             border: 1px solid #e5e7eb; 
@@ -48,10 +53,9 @@
             box-shadow: 0 1px 3px rgba(0,0,0,0.05); 
         }
 
-        h2 { font-weight: 700; letter-spacing: -0.02em; }
-        .form-label { font-weight: 600; font-size: 0.9rem; color: #374151; }
+        h2 { font-weight: 700; letter-spacing: -0.02em; color: var(--primary); }
+        .form-label { font-weight: 600; font-size: 0.85rem; color: #374151; text-transform: uppercase; letter-spacing: 0.03em; }
 
-        /* 3. Form Upgrades */
         .form-control, .form-select {
             border-radius: 8px;
             border: 1px solid #d1d5db;
@@ -60,25 +64,34 @@
 
         .form-control:focus, .form-select:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+            box-shadow: 0 0 0 3px rgba(0, 65, 106, 0.1);
         }
 
         .btn-primary { 
             background-color: var(--primary); 
             border: none; 
-            padding: 12px;
+            padding: 14px;
             font-weight: 600;
             border-radius: 8px;
         }
 
         .btn-primary:hover { background-color: var(--primary-hover); }
 
-        /* AI Result Area */
         .ai-output-box {
-            background-color: #f0fdf4; /* Very light emerald tint */
-            border: 1px solid #dcfce7;
+            background-color: var(--primary-light); 
+            border: 1px solid #d1dae1;
             border-radius: 8px;
             min-height: 100px;
+        }
+
+        .btn-outline-primary {
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-outline-primary:hover {
+            background-color: var(--primary);
+            color: white;
         }
 
         .hidden { display: none; }
@@ -89,7 +102,8 @@
 
     <div class="top-nav">
         <div class="container d-flex justify-content-between align-items-center">
-            <div>
+            <div class="d-flex align-items-center">
+                <span class="brand-name">AdriaLogic</span>
                 <a href="/dashboard">🏠 Dashboard</a>
                 <a href="/reviews-page" style="color: var(--primary); font-weight: 700;">⭐ Review Tool</a>
             </div>
@@ -103,37 +117,37 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="mb-4">
-                    <h2>🍽️ Google Review Manager</h2>
-                    <p class="text-muted">Generate brand-consistent responses for your customers.</p>
+                    <h2>Google Review Intelligence</h2>
+                    <p class="text-muted">Generate brand-consistent, automated responses for your clients.</p>
                 </div>
                 
                 <div class="card dashboard-card p-4 mb-4">
-                    <h5 class="mb-3 fw-bold">New Customer Review</h5>
+                    <h5 class="mb-3 fw-bold">Review Analysis</h5>
                     <div class="mb-3">
-                        <label class="form-label">Review Text</label>
+                        <label class="form-label">Review Content</label>
                         <textarea id="reviewInput" class="form-control" rows="4" placeholder="Paste the customer review here..."></textarea>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Star Rating</label>
+                        <label class="form-label">Sentiment / Rating</label>
                         <select id="starRating" class="form-select">
-                            <option value="5">5 Stars - Excellent</option>
-                            <option value="4">4 Stars - Good</option>
-                            <option value="3">3 Stars - Average</option>
-                            <option value="2">2 Stars - Poor</option>
-                            <option value="1">1 Star - Terrible</option>
+                            <option value="5">5 Stars - Positive</option>
+                            <option value="4">4 Stars - Generally Good</option>
+                            <option value="3">3 Stars - Neutral</option>
+                            <option value="2">2 Stars - Critical</option>
+                            <option value="1">1 Star - Immediate Attention Needed</option>
                         </select>
                     </div>
-                    <button id="generateBtn" class="btn btn-primary w-100 mt-2">Draft AI Reply</button>
+                    <button id="generateBtn" class="btn btn-primary w-100 mt-2">Generate AI Response</button>
                 </div>
 
                 <div id="resultSection" class="card dashboard-card p-4 hidden">
-                    <h5 class="card-title text-success fw-bold mb-3">AI Suggested Response</h5>
+                    <h5 class="card-title fw-bold mb-3" style="color: var(--primary);">Suggested Professional Draft</h5>
                     <div class="p-4 ai-output-box mb-3">
                         <p id="replyText" class="mb-0 italic"></p>
                     </div>
                     <div class="d-flex gap-2">
-                        <button id="copyBtn" class="btn btn-outline-success flex-grow-1">Copy to Clipboard</button>
-                        <button class="btn btn-success flex-grow-1" style="background-color: var(--primary); border: none;">Approve & Post</button>
+                        <button id="copyBtn" class="btn btn-outline-primary flex-grow-1">Copy Draft</button>
+                        <button class="btn btn-primary flex-grow-1">Approve & Post to Google</button>
                     </div>
                 </div>
 

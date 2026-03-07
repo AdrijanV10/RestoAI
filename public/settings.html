@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RestoAI | Account Management</title>
+    <title>AdriaLogic | Account Management</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
     
     <style>
-        /* Copyign Dashboard styles*/
         :root {
-            --primary: #10b981;
-            --primary-hover: #059669;
+            --primary: #00416A;      /* Adriatic Blue */
+            --primary-hover: #002d4a;
+            --primary-light: #e6ecf0;
             --bg-main: #f9fafb;
             --sidebar-bg: #ffffff;
             --text-main: #111827;
             --text-muted: #6b7280;
             --border: #e5e7eb;
+            --success: #10b981;
         }
 
         body { 
@@ -72,7 +72,7 @@
         }
 
         .nav-active {
-            background: #ecfdf5 !important;
+            background: var(--primary-light) !important;
             color: var(--primary) !important;
         }
 
@@ -82,6 +82,11 @@
             overflow-y: auto; 
         }
 
+        .main-content h1 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
 
         .settings-card { 
             background: white; 
@@ -90,6 +95,7 @@
             border: 1px solid var(--border);
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
             max-width: 600px;
+            margin-bottom: 30px; 
         }
 
         .form-group { margin-bottom: 20px; }
@@ -105,6 +111,7 @@
             border: 1px solid var(--border); 
             border-radius: 8px; 
             font-family: inherit;
+            box-sizing: border-box;
         }
         
         .btn-save {
@@ -119,12 +126,42 @@
             transition: background 0.2s;
         }
         .btn-save:hover { background: var(--primary-hover); }
+
+        .btn-google {
+            background-color: #4285F4;
+            color: white;
+            display: inline-flex;
+            align-items: center; 
+            justify-content: center; 
+            gap: 12px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            min-width: 250px; 
+        }
+
+        .btn-google.connected {
+            background-color: var(--success);
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .btn-google img {
+            height: 20px;
+            width: 20px;
+            object-fit: contain;
+        }
     </style>
 </head>
 <body>
 
     <div class="sidebar">
-        <h2>RestoAI</h2>
+        <h2>AdriaLogic</h2>
         <nav>
             <a href="/dashboard">🏠 Home</a>
             <a href="/reviews-page">⭐ Google Reviews</a>
@@ -139,39 +176,55 @@
 
     <div class="main-content">
         <h1>Account Management</h1>
-        <p>Complete your profile to personalize your AI review responses.</p>
+        <p>Complete your profile to personalize your AI's brand voice and logic.</p>
+        
         <section class="settings-card">
             <form id="settings-form">
                 <div class="form-group">
-                    <label>Restaurant Name</label>
-                    <input type="text" id="restaurant_name" required>
+                    <label>Business Name</label>
+                    <input type="text" id="restaurant_name" required placeholder="AdriaLogic">
                 </div>
                 <div class="form-group">
-                    <label>Owner/Manager Name</label>
-                    <input type="text" id="owner_name" required>
+                    <label>Point of Contact</label>
+                    <input type="text" id="owner_name" required placeholder="Full Name">
                 </div>
                 <div class="form-group">
                     <label>Email Address</label>
                     <input type="email" id="email" required>
                 </div>
                 <div class="form-group">
-                    <label>Cuisine Type</label>
-                    <input type="text" id="cuisine_type" placeholder="e.g. Italian, Vegan Fusion">
+                    <label>Industry / Niche</label>
+                    <input type="text" id="cuisine_type" placeholder="e.g. Software Development, Retail, Hospitality">
                 </div>
                 <div class="form-group">
-                    <label>Restaurant Vibe</label>
-                    <input type="text" id="vibe" placeholder="e.g. Cozy and Romantic, High-energy Bar">
+                    <label>Brand Personality</label>
+                    <input type="text" id="vibe" placeholder="e.g. Professional and Helpful, Witty and Energetic">
                 </div>
                 <div class="form-group">
-                    <label>Unique Selling Point (USP)</label>
-                    <input type="text" id="usp" placeholder="e.g. 100-year-old sourdough starter">
+                    <label>Key Value Proposition</label>
+                    <input type="text" id="usp" placeholder="e.g. 24/7 intelligent automation for customer care">
                 </div>
                 
                 <button type="submit" class="btn-save">SAVE ALL CHANGES</button>
             </form>
-            <p id="status-msg"></p>
+            <p id="status-msg" style="margin-top: 15px;"></p>
         </section>
-        
+
+        <div class="settings-card" style="border-top: 4px solid #4285F4;">
+            <h3 style="display: flex; align-items: center; gap: 10px; margin-top: 0;">
+                <span style="font-size: 1.5rem;">🔗</span> Integrations
+            </h3>
+            <p style="margin-bottom: 25px; color: var(--text-muted); font-size: 0.95rem;">
+                Connect your Google Business Profile to allow AdriaLogic to fetch reviews and post your approved replies automatically.
+            </p>
+            
+            <div id="google-connection-status">
+                <a href="/auth/google" id="google-btn" class="btn-google">
+                    <img src="https://www.gstatic.com/images/branding/product/1x/gsa_512dp.png" alt="Google Logo">
+                    <span>Connect Google Business</span>
+                </a>
+            </div>
+        </div>
     </div>
 
     <script src="settings.js"></script>

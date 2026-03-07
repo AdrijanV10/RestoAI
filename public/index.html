@@ -3,95 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RestoAI | Login</title>
+    <title>AdriaLogic | Intelligent Automation</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary-emerald: #10b981; /* Premium SaaS Green */
+            --adriatic-blue: #00416A;
+            --primary-emerald: #10b981;
             --dark-charcoal: #111827;
             --bg-soft: #f9fafb;
         }
 
         body { 
-            /* 1. Applying the Inter Font */
             font-family: 'Inter', sans-serif !important; 
             background: var(--bg-soft); 
-            height: 100vh; 
+            min-height: 100vh; 
             display: flex; 
             align-items: center; 
             color: var(--dark-charcoal);
+            margin: 0;
+        }
+
+        /* Split screen container */
+        .hero-wrapper {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        /* Left side*/
+        .about-column {
+            flex: 1;
+            min-width: 350px;
+            padding-right: 3rem;
+        }
+
+        .brand-logo {
+            height: 120px;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-column h1 {
+            font-weight: 800;
+            font-size: 2.8rem;
+            color: var(--adriatic-blue);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-column p {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: #4b5563;
+            margin-bottom: 2rem;
+        }
+
+        /* Right side */
+        .login-column {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            min-width: 350px;
         }
 
         .login-card { 
-            border-radius: 12px; 
-            /* 2. Soft, multi-layered shadow for "Elevation" */
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 10px 15px -3px rgba(0,0,0,0.1); 
+            width: 100%;
+            max-width: 400px;
+            border-radius: 16px; 
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); 
             border: 1px solid #e5e7eb; 
             background: #ffffff;
+            padding: 2.5rem;
         }
 
-        h3 {
-            font-weight: 700;
-            letter-spacing: -0.02em; /* The "SaaS" tight-text look */
-            color: var(--dark-charcoal);
-        }
-
-        .form-label {
-            font-weight: 500;
-            font-size: 0.9rem;
-            color: #4b5563;
-        }
-
-        .form-control {
-            border-radius: 8px;
-            padding: 10px 12px;
-            border: 1px solid #d1d5db;
-        }
-
-        .form-control:focus {
-            border-color: var(--primary-emerald);
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
-        }
-
-        /* 3. Upgrading the Button to Emerald */
         .btn-primary { 
-            background-color: var(--primary-emerald); 
+            background-color: var(--adriatic-blue);
             border: none; 
-            padding: 12px;
+            padding: 14px;
             font-weight: 600;
             border-radius: 8px;
             transition: all 0.2s;
         }
 
         .btn-primary:hover { 
-            background-color: #059669; 
+            background-color: #002d4a; 
             transform: translateY(-1px);
+        }
+
+        @media (max-width: 768px) {
+            .about-column { padding-right: 0; text-align: center; margin-bottom: 3rem; }
+            .about-column h1 { font-size: 2rem; }
+            .login-column { justify-content: center; }
         }
 
         .hidden { display: none; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-4">
-                <div class="card login-card p-4">
-                    <h3 class="text-center mb-4">🍽️ RestoAI</h3>
-                    <p class="text-center text-muted small mb-4">Sign in to manage your brand voice</p>
-                    
-                    <div class="mb-3">
-                        <label class="form-label">Username</label>
-                        <input type="text" id="username" class="form-control" placeholder="Enter your username">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Password</label>
-                        <input type="password" id="password" class="form-control" placeholder="••••••••">
-                    </div>
-                    <button id="loginBtn" class="btn btn-primary w-100">Sign In</button>
-                    <p id="errorMsg" class="text-danger mt-3 text-center small hidden"></p>
+    <div class="hero-wrapper">
+        <div class="about-column">
+            <img src="logo-nobackground.png" alt="AdriaLogic Logo" class="brand-logo">
+            <h1>Intelligent Logic for Local Business.</h1>
+            <p>Rooted and built in Ottawa, AdriaLogic provides SaaS automation tools that handle the heavy lifting of customer engagement so you don't have to.</p>
+            <div class="d-flex gap-3">
+                <span class="badge bg-light text-dark p-2 border">✓ AI Review Management</span>
+                <span class="badge bg-light text-dark p-2 border">✓ Ottawa Local</span>
+            </div>
+        </div>
+
+        <div class="login-column">
+            <div class="card login-card">
+                <h3 class="text-center mb-2" style="font-weight: 700;">Client Login</h3>
+                <p class="text-center text-muted small mb-4">Manage your brand voice</p>
+                
+                <div class="mb-3">
+                    <label class="form-label">Username</label>
+                    <input type="text" id="username" class="form-control" placeholder="Enter your username">
                 </div>
+                <div class="mb-4">
+                    <label class="form-label">Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="••••••••">
+                </div>
+                <button id="loginBtn" class="btn btn-primary w-100">Sign In to Dashboard</button>
+                <p id="errorMsg" class="text-danger mt-3 text-center small hidden"></p>
             </div>
         </div>
     </div>
